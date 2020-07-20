@@ -27,7 +27,7 @@ public class EasingDemoEntity extends AnimalEntity implements IAnimatedEntity
 	private <ENTITY extends Entity> boolean demoPredicate(AnimationTestEvent<ENTITY> event)
 	{
 		if(KeyboardHandler.isQDown) return false;
-		easingDemoControlller.setAnimation(new AnimationBuilder().addAnimation("animation.easeInBack", false));
+		easingDemoControlller.setAnimation(new AnimationBuilder().addAnimation("backtest", false));
 		return true;
 	}
 
