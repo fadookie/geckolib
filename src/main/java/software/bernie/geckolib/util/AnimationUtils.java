@@ -74,8 +74,19 @@ public class AnimationUtils
 			easingType = animationPoint.keyframe.easingType;
 		}
 		double ease = EasingManager.ease(animationPoint.currentTick / animationPoint.animationEndTick, easingType, animationPoint.keyframe == null ? null : animationPoint.keyframe.easingArgs);
-		return lerpValues(ease,
+		float result = lerpValues(ease,
 				animationPoint.animationStartValue, animationPoint.animationEndValue);
+		/**
+		 * 			const easedAmount = easingFunc(amount);
+		 * 			const start = this.calc(axis);
+		 * 			const stop = other.calc(axis);
+		 * 			const result = lerp(start, stop, easedAmount);
+		 * 			console.log('keyframeGetLerp easing:', easing, 'arguments:', arguments, 'start:', start, 'stop:', stop, 'amount:', amount, 'easedAmount:', easedAmount, 'result:', result);
+		 */
+		if (!animationPoint.animationStartValue.equals(animationPoint.animationEndValue)) {
+			System.out.println("AnimationUtils#lerpValues easing:" + easingType + " start:" + animationPoint.animationStartValue + " stop:" + animationPoint.animationEndValue + " amount:" + animationPoint.currentTick / animationPoint.animationEndTick + " easedAmount:" + ease + " result:" + result);
+		}
+		return result;
 	}
 
 	/**

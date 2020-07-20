@@ -7,6 +7,7 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.world.World;
 import software.bernie.geckolib.GeckoLib;
 import software.bernie.geckolib.animation.builder.AnimationBuilder;
+import software.bernie.geckolib.example.KeyboardHandler;
 import software.bernie.geckolib.manager.EntityAnimationManager;
 import software.bernie.geckolib.event.AnimationTestEvent;
 import software.bernie.geckolib.animation.controller.AnimationController;
@@ -25,7 +26,8 @@ public class EasingDemoEntity extends AnimalEntity implements IAnimatedEntity
 
 	private <ENTITY extends Entity> boolean demoPredicate(AnimationTestEvent<ENTITY> event)
 	{
-		easingDemoControlller.setAnimation(new AnimationBuilder().addAnimation("animation.easing1.new", true));
+		if(KeyboardHandler.isQDown) return false;
+		easingDemoControlller.setAnimation(new AnimationBuilder().addAnimation("animation.easeInBack", false));
 		return true;
 	}
 
